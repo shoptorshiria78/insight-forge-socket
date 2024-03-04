@@ -1,23 +1,10 @@
-const express = require("express");
-const cors = require("cors");
-const app = express();
-const port = process.env.PORT || 8900;
-// const frontendUrl = "https://insight-forge-psi.vercel.app";
-const frontendUrl ="http://localhost:3000";
-app.use(express.json())
-const socketIo = require('socket.io')
-const http = require('http')
-const server = http.createServer(app)
-
-
-const io =socketIo(server,{
-   cors:{
-      origin:frontendUrl,
-      methods: ["GET","POST"],
-      credentials: true,
+const io = require("socket.io")(8900, {
+   cors: {
+      // origin: "https://insight-forge-psi.vercel.app",
+      origin: "http://localhost:3000",
+      methods: ["GET", "POST"]
    }
 })
-   
 
 let users = [];
 
@@ -74,7 +61,3 @@ io.on("connection", (socket) => {
       io.emit("getUsers", users)
    })
 });
-
-server.listen(port,()=>{
-   console.log(`server is running on ${port}`)
-})
