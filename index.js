@@ -1,8 +1,8 @@
 const io = require("socket.io")(8900, {
    cors: {
-      // origin: "https://insight-forge-psi.vercel.app",
-      origin: "http://localhost:3000",
-      methods: ["GET", "POST"]
+      origin: "https://insight-forge-psi.vercel.app",
+      // origin: "http://localhost:3000",
+  
    }
 })
 
